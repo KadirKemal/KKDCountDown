@@ -1,0 +1,6 @@
+framework module KKDCountDown {
+  umbrella header "KKDCountDown-umbrella.h"
+
+  export *
+  module * { export * }
+}

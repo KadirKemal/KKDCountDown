@@ -1,0 +1,16 @@
+PODS:
+  - KKDCountDown (0.1.0)
+
+DEPENDENCIES:
+  - KKDCountDown (from `../`)
+
+EXTERNAL SOURCES:
+  KKDCountDown:
+    :path: ../
+
+SPEC CHECKSUMS:
+  KKDCountDown: 113db5924438e7506b7b168a4c922f21296ecbb7
+
+PODFILE CHECKSUM: 9ad53bc014bfd4cf9429d271b38d38d121d4c245
+
+COCOAPODS: 1.4.0

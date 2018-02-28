@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'KKDCountDown_Example' do
+  pod 'KKDCountDown', :path => '../'
+
+  target 'KKDCountDown_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
