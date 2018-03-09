@@ -9,17 +9,24 @@
 import UIKit
 import KKDCountDown
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, KKDCircularCountDownViewDelegate {
+    
 
+    @IBOutlet weak var circularCountDown: KKDCircularCountDownView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let pieChartView = KKDCountDownView()
-        pieChartView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 400)
-        view.addSubview(pieChartView)
+        circularCountDown.circleWidth = 10
+        circularCountDown.circleColor = .lightGray
+        circularCountDown.progressColor = .blue
+        circularCountDown.textColor = .blue
+        circularCountDown.textFont = UIFont(name: "Verdana", size: 80)!
+        circularCountDown.textWinkingPeriod = 0.2
+        circularCountDown.defaultText = "20"
         
-        pieChartView.startCountDown(seconds: 10)
+        circularCountDown.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,5 +34,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func onClickedStart(_ sender: Any) {
+        circularCountDown.startCountDown(20)
+    }
+    
+    
+    func onFinishedCountDown(kkdCircularCountDownView: KKDCircularCountDownView) {
+        
+    }
 }
 

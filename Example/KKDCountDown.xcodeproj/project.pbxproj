@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07280A272052C6E200974D80 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 07280A262052C6E200974D80 /* CHANGELOG.md */; };
 		5B1AE3606567A5C233B08200 /* Pods_KKDCountDown_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBB4FE0A253F0412EB105663 /* Pods_KKDCountDown_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -30,9 +31,10 @@
 /* Begin PBXFileReference section */
 		025CD6B9B6EE798C674832CA /* Pods-KKDCountDown_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKDCountDown_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KKDCountDown_Tests/Pods-KKDCountDown_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		0701CC6CA8C773D14AC9491F /* Pods-KKDCountDown_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKDCountDown_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-KKDCountDown_Example/Pods-KKDCountDown_Example.release.xcconfig"; sourceTree = "<group>"; };
+		07280A262052C6E200974D80 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		2E411EFF94CB8EBB54558655 /* Pods-KKDCountDown_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KKDCountDown_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KKDCountDown_Example/Pods-KKDCountDown_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4F0A48DA5C8A26829AD81205 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		55FD40B3DCDB9FE3446DA0E2 /* KKDCountDown.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KKDCountDown.podspec; path = ../KKDCountDown.podspec; sourceTree = "<group>"; };
+		55FD40B3DCDB9FE3446DA0E2 /* KKDCountDown.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = KKDCountDown.podspec; path = ../KKDCountDown.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		607FACD01AFB9204008FA782 /* KKDCountDown_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KKDCountDown_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				55FD40B3DCDB9FE3446DA0E2 /* KKDCountDown.podspec */,
+				07280A262052C6E200974D80 /* CHANGELOG.md */,
 				7B6E491D56FCC1AB8148C98A /* README.md */,
 				4F0A48DA5C8A26829AD81205 /* LICENSE */,
 			);
@@ -251,6 +254,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				07280A272052C6E200974D80 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		0233AE11090795E7FB7803080BEE0BCC /* KKDCountDown-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEC739113945E96DAADC4FE8F14B3B8C /* KKDCountDown-dummy.m */; };
 		04C30EB2B87AC8ABEE6AA4FC8CB28776 /* Pods-KKDCountDown_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C697267D853B0A2AC4489A1B6B10C0A /* Pods-KKDCountDown_Tests-dummy.m */; };
-		072B6E082046F80A00E5381B /* KKDCountDownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072B6E072046F80A00E5381B /* KKDCountDownLabel.swift */; };
-		07E82CD92045DCCF00B1B98C /* KKDCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E82CD82045DCCF00B1B98C /* KKDCountDownView.swift */; };
-		07E82CDB2045EA6F00B1B98C /* KKDPieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E82CDA2045EA6F00B1B98C /* KKDPieView.swift */; };
+		07280A242052A78600974D80 /* KKDCircularCountDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07280A222052A78600974D80 /* KKDCircularCountDownView.swift */; };
+		07280A252052A78600974D80 /* CircularProgressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07280A232052A78600974D80 /* CircularProgressLayer.swift */; };
 		0D9DF421407B1CE61AFDA9CF6E17FC6D /* Pods-KKDCountDown_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 845C163AF00544294B0E9BF5AA5733C5 /* Pods-KKDCountDown_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		10CDF821ABAF140B990838821DB23A06 /* Pods-KKDCountDown_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F85999E0F343F959B4C2F7B1ADA4C1A9 /* Pods-KKDCountDown_Example-dummy.m */; };
 		394A771C34FA4426F3BB01082E486320 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
@@ -33,9 +32,8 @@
 
 /* Begin PBXFileReference section */
 		040EFC142F3EBD04051B043D4D5B9416 /* Pods-KKDCountDown_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-KKDCountDown_Example-frameworks.sh"; sourceTree = "<group>"; };
-		072B6E072046F80A00E5381B /* KKDCountDownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKDCountDownLabel.swift; sourceTree = "<group>"; };
-		07E82CD82045DCCF00B1B98C /* KKDCountDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKDCountDownView.swift; sourceTree = "<group>"; };
-		07E82CDA2045EA6F00B1B98C /* KKDPieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KKDPieView.swift; sourceTree = "<group>"; };
+		07280A222052A78600974D80 /* KKDCircularCountDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KKDCircularCountDownView.swift; path = KKDCountDown/Classes/KKDCircularCountDownView.swift; sourceTree = "<group>"; };
+		07280A232052A78600974D80 /* CircularProgressLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularProgressLayer.swift; path = KKDCountDown/Classes/CircularProgressLayer.swift; sourceTree = "<group>"; };
 		0AAB1FE1B50D8A8EAEC38018E059FFAA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D202EE020992966B612ABE6FFB3A720 /* KKDCountDown.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = KKDCountDown.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		2B5D102909BC29E45B508E288902E959 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,9 +151,8 @@
 		7C99D1BEE70934860D549DAE8CD1A0E7 /* KKDCountDown */ = {
 			isa = PBXGroup;
 			children = (
-				07E82CD82045DCCF00B1B98C /* KKDCountDownView.swift */,
-				07E82CDA2045EA6F00B1B98C /* KKDPieView.swift */,
-				072B6E072046F80A00E5381B /* KKDCountDownLabel.swift */,
+				07280A222052A78600974D80 /* KKDCircularCountDownView.swift */,
+				07280A232052A78600974D80 /* CircularProgressLayer.swift */,
 				26F99938F4965EE6A39026DDE3F30639 /* Pod */,
 				38A9D4B6E6C00E364FA3F82A262C0D80 /* Support Files */,
 			);
@@ -316,6 +313,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					1F2FA2EB01F83C5645BFFB894A0AC565 = {
+						LastSwiftMigration = 0920;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -341,10 +343,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07280A242052A78600974D80 /* KKDCircularCountDownView.swift in Sources */,
+				07280A252052A78600974D80 /* CircularProgressLayer.swift in Sources */,
 				0233AE11090795E7FB7803080BEE0BCC /* KKDCountDown-dummy.m in Sources */,
-				072B6E082046F80A00E5381B /* KKDCountDownLabel.swift in Sources */,
-				07E82CDB2045EA6F00B1B98C /* KKDPieView.swift in Sources */,
-				07E82CD92045DCCF00B1B98C /* KKDCountDownView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D48FBAE7A8D944BD886FEF395F5EF711 /* KKDCountDown.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -412,6 +414,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D48FBAE7A8D944BD886FEF395F5EF711 /* KKDCountDown.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
