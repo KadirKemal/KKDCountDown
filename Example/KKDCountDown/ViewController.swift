@@ -9,7 +9,7 @@
 import UIKit
 import KKDCountDown
 
-class ViewController: UIViewController, KKDCircularCountDownViewDelegate {
+class ViewController: UIViewController {
     
 
     @IBOutlet weak var circularCountDown: KKDCircularCountDownView!
@@ -18,15 +18,14 @@ class ViewController: UIViewController, KKDCircularCountDownViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        circularCountDown.circleWidth = 10
+        circularCountDown.circleWidth = 15
         circularCountDown.circleColor = .lightGray
-        circularCountDown.progressColor = .blue
+        circularCountDown.progressColor = .green
         circularCountDown.textColor = .blue
         circularCountDown.textFont = UIFont(name: "Verdana", size: 80)!
         circularCountDown.textWinkingPeriod = 0.2
-        circularCountDown.defaultText = "20"
+        circularCountDown.defaultText = "10"
         
-        circularCountDown.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,12 +34,36 @@ class ViewController: UIViewController, KKDCircularCountDownViewDelegate {
     }
 
     @IBAction func onClickedStart(_ sender: Any) {
-        circularCountDown.startCountDown(20)
+        circularCountDown.startCountDown(10) {
+            let alert = UIAlertController(title: "Time is up", message: "", preferredStyle: .alert)
+            self.present(alert, animated: true)
+        }
     }
     
     
-    func onFinishedCountDown(kkdCircularCountDownView: KKDCircularCountDownView) {
+    @IBAction func onClickedStop(_ sender: Any) {
+        circularCountDown.stopCountDown();
         
+        let remaining = String(format: "%.2f", circularCountDown.remainingTime())
+        
+        let alert = UIAlertController(title: "Counting down was stopped", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
+        self.present(alert, animated: true)
     }
+    
+    
+    @IBAction func onClickedPause(_ sender: Any) {
+        circularCountDown.pauseCountDown();
+        
+        let remaining = String(format: "%.2f", circularCountDown.remainingTime())
+        
+        let alert = UIAlertController(title: "Counting down was paused", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
+        self.present(alert, animated: true)
+    }
+    
+    @IBAction func onClickedContinue(_ sender: Any) {
+        circularCountDown.continueCountDown();
+    }
+    
+    
 }
 

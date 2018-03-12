@@ -8,16 +8,10 @@
 
 import UIKit
 
-public protocol KKDCircularCountDownViewDelegate: class {
-    
-    func onFinishedCountDown(kkdCircularCountDownView: KKDCircularCountDownView)
-    
-}
-
 @IBDesignable open class KKDCircularCountDownView: UIView, CAAnimationDelegate {
     
-    open weak var delegate: KKDCircularCountDownViewDelegate?
-    
+    var completionBlock: CountDownCompletion?
+        
     @IBInspectable open var circleWidth: CGFloat = 15 {
         didSet {
             self.circularLayer.circleWidth = self.circleWidth
@@ -49,13 +43,13 @@ public protocol KKDCircularCountDownViewDelegate: class {
         }
     }
     
-    @IBInspectable open var textColor: UIColor = UIColor.black {
+    @IBInspectable open var textColor: UIColor = UIColor.red {
         didSet {
             self.circularLayer.textColor = self.textColor
         }
     }
     
-    @IBInspectable open var textWinkingPeriod: CGFloat = 0.1 {
+    @IBInspectable open var textWinkingPeriod: CGFloat = 0.2 {
         didSet {
             self.circularLayer.textWinkingPeriod = self.textWinkingPeriod
         }
@@ -108,6 +102,7 @@ public protocol KKDCircularCountDownViewDelegate: class {
         
         self.circularLayer.textWinkingPeriod = textWinkingPeriod
         self.circularLayer.animated = false
+        self.circularLayer.isAnimating = false
 
         self.backgroundColor = UIColor.clear
         self.circularLayer.backgroundColor = UIColor.clear.cgColor
@@ -118,12 +113,17 @@ public protocol KKDCircularCountDownViewDelegate: class {
         super.draw(rect)
     }
 
-    open func startCountDown(_ countDownDuration: TimeInterval, completion:  (() -> Void)? = nil) {
+    public typealias CountDownCompletion = (() -> Void)
+    
+    open func startCountDown(_ countDownDuration: TimeInterval, completion:  CountDownCompletion? = nil) {
+        self.completionBlock = completion
         self.circularLayer.removeAllAnimations()
         
+        self.circularLayer.speed = 1.0
         self.circularLayer.animationDuration = countDownDuration
         self.circularLayer.value = self.circularLayer.stepCount
         self.circularLayer.animated = true
+        self.circularLayer.isAnimating = true
         
         let animation = CABasicAnimation(keyPath: "value")
         animation.fromValue = 0
@@ -137,8 +137,54 @@ public protocol KKDCircularCountDownViewDelegate: class {
     
     public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if(flag){
-            self.delegate?.onFinishedCountDown(kkdCircularCountDownView: self)
+            self.circularLayer.isAnimating = false
+            self.completionBlock?()
         }
+    }
+    
+    open func stopCountDown(){
+        guard self.circularLayer.isAnimating else {
+            return
+        }
+        
+        self.circularLayer.isAnimating = false
+        self.circularLayer.animated = false
+        self.defaultText = "stop"
+        
+        self.circularLayer.removeAllAnimations()
+        self.completionBlock = nil
+    }
+    
+    open func pauseCountDown(){
+        guard self.circularLayer.isAnimating else {
+            return
+        }
+        
+        self.circularLayer.isAnimating = false
+        
+        let pausedTime = self.circularLayer.convertTime(CACurrentMediaTime(), from: nil)
+        self.circularLayer.speed = 0.0
+        self.circularLayer.timeOffset = pausedTime
+    }
+    
+    open func continueCountDown(){
+        guard self.circularLayer.isAnimating != true else {
+            return
+        }
+        
+        self.circularLayer.isAnimating = true
+        
+        let pausedTime = self.circularLayer.timeOffset
+        self.circularLayer.speed = 1.0
+        self.circularLayer.timeOffset = 0.0
+        self.circularLayer.beginTime = 0.0
+        
+        let timeSincePause = self.circularLayer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime;
+        self.circularLayer.beginTime = timeSincePause;
+    }
+    
+    open func remainingTime() -> CGFloat {
+        return (1.0 - self.circularLayer.value / self.circularLayer.stepCount) * CGFloat(self.circularLayer.animationDuration)
     }
         
 }

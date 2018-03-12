@@ -26,6 +26,7 @@ class CircularProgressLayer: CAShapeLayer {
     @NSManaged var textWinkingPeriod: CGFloat
     
     @NSManaged var animated: Bool
+    @NSManaged var isAnimating: Bool
     
     lazy private var valueLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
@@ -86,7 +87,7 @@ class CircularProgressLayer: CAShapeLayer {
                                      radius: radius,
                                      startAngle: CGFloat(-0.5 * Double.pi),
                                      endAngle: endAngle,
-                                     clockwise: true)
+                                     clockwise: false)
         
         path.lineWidth = CGFloat(self.circleWidth)
         path.lineCapStyle = .round
