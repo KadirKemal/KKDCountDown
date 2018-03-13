@@ -180,11 +180,16 @@ import UIKit
         self.circularLayer.beginTime = 0.0
         
         let timeSincePause = self.circularLayer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime;
+        
         self.circularLayer.beginTime = timeSincePause;
     }
     
     open func remainingTime() -> CGFloat {
         return (1.0 - self.circularLayer.value / self.circularLayer.stepCount) * CGFloat(self.circularLayer.animationDuration)
+    }
+    
+    open func abc() -> String {
+        return "\(self.circularLayer.timeOffset) - \(CACurrentMediaTime())"
     }
         
 }

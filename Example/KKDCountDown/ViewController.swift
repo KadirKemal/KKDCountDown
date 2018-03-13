@@ -46,7 +46,12 @@ class ViewController: UIViewController {
         
         let remaining = String(format: "%.2f", circularCountDown.remainingTime())
         
-        let alert = UIAlertController(title: "Counting down was stopped", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
+        //let alert = UIAlertController(title: "Counting down was stopped", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
+        let alert = UIAlertController(title: "abc", message:circularCountDown.abc(),preferredStyle: .alert)
+
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+        alert.addAction(cancel)
+        
         self.present(alert, animated: true)
     }
     
@@ -56,7 +61,12 @@ class ViewController: UIViewController {
         
         let remaining = String(format: "%.2f", circularCountDown.remainingTime())
         
-        let alert = UIAlertController(title: "Counting down was paused", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
+        //let alert = UIAlertController(title: "Counting down was paused", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
+        let alert = UIAlertController(title: "abc", message:circularCountDown.abc(),preferredStyle: .alert)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+        alert.addAction(cancel)
+        
         self.present(alert, animated: true)
     }
     
