@@ -11,6 +11,7 @@ import UIKit
 class CircularProgressLayer: CAShapeLayer {
     
     let stepCount: CGFloat = 1000
+    var remaining: CGFloat = 0
     
     @NSManaged var animationDuration: TimeInterval
     @NSManaged var value: CGFloat
@@ -33,6 +34,8 @@ class CircularProgressLayer: CAShapeLayer {
     override func draw(in ctx: CGContext) {
         super.draw(in: ctx)
         UIGraphicsPushContext(ctx)
+        
+        print("KADİR - \(self.convertTime(CACurrentMediaTime(), from: nil))")
         
         drawBackgroundCircle()
         drawProgressCircle()
@@ -101,9 +104,9 @@ class CircularProgressLayer: CAShapeLayer {
         if(animated == false){
             drawValueLabelWithValue(defaultText)
         }else{
-            let remaining = CGFloat(animationDuration) * (1 - value / stepCount)
+            remaining = CGFloat(animationDuration) * (1 - value / stepCount)
             
-            if textWinkingPeriod < 1 && remaining > 0 && (Int(remaining * 1000) % 1000) < Int(1000 * textWinkingPeriod) {
+            if isAnimating && textWinkingPeriod < 1 && remaining > 0 && (Int(remaining * 1000) % 1000) < Int(1000 * textWinkingPeriod) {
                 return
             }
             

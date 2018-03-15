@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         circularCountDown.textColor = .blue
         circularCountDown.textFont = UIFont(name: "Verdana", size: 80)!
         circularCountDown.textWinkingPeriod = 0.2
-        circularCountDown.defaultText = "10"
+        circularCountDown.defaultText = "100"
         
     }
 
@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onClickedStart(_ sender: Any) {
-        circularCountDown.startCountDown(10) {
+        circularCountDown.startCountDown(100) {
             let alert = UIAlertController(title: "Time is up", message: "", preferredStyle: .alert)
             self.present(alert, animated: true)
         }
@@ -45,28 +45,20 @@ class ViewController: UIViewController {
         circularCountDown.stopCountDown();
         
         let remaining = String(format: "%.2f", circularCountDown.remainingTime())
-        
-        //let alert = UIAlertController(title: "Counting down was stopped", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
-        let alert = UIAlertController(title: "abc", message:circularCountDown.abc(),preferredStyle: .alert)
-
+        let alert = UIAlertController(title: "Counting down was stopped", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
         alert.addAction(cancel)
-        
         self.present(alert, animated: true)
     }
     
     
     @IBAction func onClickedPause(_ sender: Any) {
         circularCountDown.pauseCountDown();
-        
+                
         let remaining = String(format: "%.2f", circularCountDown.remainingTime())
-        
-        //let alert = UIAlertController(title: "Counting down was paused", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
-        let alert = UIAlertController(title: "abc", message:circularCountDown.abc(),preferredStyle: .alert)
-        
+        let alert = UIAlertController(title: "Counting down was stopped", message: "Remaining duration is \(remaining) seconds", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
         alert.addAction(cancel)
-        
         self.present(alert, animated: true)
     }
     

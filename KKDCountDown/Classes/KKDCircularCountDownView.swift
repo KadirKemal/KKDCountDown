@@ -11,6 +11,7 @@ import UIKit
 @IBDesignable open class KKDCircularCountDownView: UIView, CAAnimationDelegate {
     
     var completionBlock: CountDownCompletion?
+    private var startAnimationConvertTime: CFTimeInterval?
         
     @IBInspectable open var circleWidth: CGFloat = 15 {
         didSet {
@@ -115,6 +116,13 @@ import UIKit
 
     public typealias CountDownCompletion = (() -> Void)
     
+    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        if(flag){
+            self.circularLayer.isAnimating = false
+            self.completionBlock?()
+        }
+    }
+    
     open func startCountDown(_ countDownDuration: TimeInterval, completion:  CountDownCompletion? = nil) {
         self.completionBlock = completion
         self.circularLayer.removeAllAnimations()
@@ -125,6 +133,10 @@ import UIKit
         self.circularLayer.animated = true
         self.circularLayer.isAnimating = true
         
+        self.circularLayer.beginTime = 0;
+        
+        self.startAnimationConvertTime = self.circularLayer.convertTime(CACurrentMediaTime(), from: nil)
+        
         let animation = CABasicAnimation(keyPath: "value")
         animation.fromValue = 0
         animation.toValue = self.circularLayer.stepCount
@@ -134,14 +146,6 @@ import UIKit
         
         self.circularLayer.add(animation, forKey: nil)
     }
-    
-    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if(flag){
-            self.circularLayer.isAnimating = false
-            self.completionBlock?()
-        }
-    }
-    
     open func stopCountDown(){
         guard self.circularLayer.isAnimating else {
             return
@@ -185,11 +189,6 @@ import UIKit
     }
     
     open func remainingTime() -> CGFloat {
-        return (1.0 - self.circularLayer.value / self.circularLayer.stepCount) * CGFloat(self.circularLayer.animationDuration)
+        return CGFloat(self.circularLayer.animationDuration) - CGFloat(self.circularLayer.convertTime(CACurrentMediaTime(), from: nil) - startAnimationConvertTime!)
     }
-    
-    open func abc() -> String {
-        return "\(self.circularLayer.timeOffset) - \(CACurrentMediaTime())"
-    }
-        
 }
