@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onClickedStart(_ sender: Any) {
-        circularCountDown.startCountDown(100) {
+        circularCountDown.startCountDown(10) {
             let alert = UIAlertController(title: "Time is up", message: "", preferredStyle: .alert)
             self.present(alert, animated: true)
         }
