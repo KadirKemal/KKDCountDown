@@ -6,8 +6,12 @@
 [![Platform](https://img.shields.io/cocoapods/p/KKDCountDown.svg?style=flat)](http://cocoapods.org/pods/KKDCountDown)
 
 ----------
-Getting five star comments are very important for every application. RateMe helps you to track your users and warn you when the application is used by a satisfied user.
+KKDCountDown is the simple circle countdown. You can easly configure the circle design. KKDCountDown uses mach_absolute_time() function to measure duration accurately.
 ----------
+
+## SCREENSHOT
+
+<img src="https://raw.githubusercontent.com/KadirKemal/KKDCountDown/master/Example/kkdcountdown.gif" width="200px">
 
 ## Installation
 
@@ -42,7 +46,38 @@ It is the default text. Default value is ""
 #### textWinkingPeriod
 It is the default text. This value should be between 0 and 1. Default value is 0.2
 
-### Starting Count Down
+## Starting Count Down
+use startCountDown function to start 
+```
+        circularCountDown.startCountDown(10) {
+            let alert = UIAlertController(title: "Time is up", message: "", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
+        }
+```
+
+## Stopping Count Down
+use stopCountDown function to start 
+```
+        circularCountDown.stopCountDown();
+```
+
+## Pausing Count Down
+use stopCountDown function to start 
+```
+        circularCountDown.pauseCountDown();
+```
+
+## Resuming Count Down
+use stopCountDown function to start 
+```
+        circularCountDown.resumeCountDown();
+```
+
+## Accurate Measurement
+KKDCountDown uses mach_absolute_time() function to measure duration accurately.
+
 
 ## Author
 
