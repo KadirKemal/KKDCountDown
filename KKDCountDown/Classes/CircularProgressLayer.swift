@@ -34,9 +34,7 @@ class CircularProgressLayer: CAShapeLayer {
     override func draw(in ctx: CGContext) {
         super.draw(in: ctx)
         UIGraphicsPushContext(ctx)
-        
-        print("KADİR - \(self.convertTime(CACurrentMediaTime(), from: nil))")
-        
+                
         drawBackgroundCircle()
         drawProgressCircle()
         drawValueLabel()

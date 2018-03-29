@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/KKDCountDown.svg?style=flat)](http://cocoapods.org/pods/KKDCountDown)
 
 ----------
-KKDCountDown is the simple circle countdown. You can easly configure the circle design. KKDCountDown uses mach_absolute_time() function to measure duration accurately.
+KKDCountDown is the simple circle countdown. You can easly configure the circle design. KKDCountDown uses mach_absolute_time function to measure duration accurately.
 ----------
 
 ## SCREENSHOT

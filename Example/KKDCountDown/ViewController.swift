@@ -64,8 +64,8 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    @IBAction func onClickedContinue(_ sender: Any) {
-        circularCountDown.continueCountDown();
+    @IBAction func onClickedResume(_ sender: Any) {
+        circularCountDown.resumeCountDown();
     }
     
     

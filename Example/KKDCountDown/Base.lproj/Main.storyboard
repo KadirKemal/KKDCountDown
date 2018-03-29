@@ -72,9 +72,9 @@
                                     <constraint firstAttribute="height" constant="30" id="uhT-4J-XMn"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Continue"/>
+                                <state key="normal" title="Resume"/>
                                 <connections>
-                                    <action selector="onClickedContinue:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vbz-EE-lpa"/>
+                                    <action selector="onClickedResume:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="I7Z-qZ-Ust"/>
                                 </connections>
                             </button>
                         </subviews>

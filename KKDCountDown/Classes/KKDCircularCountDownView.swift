@@ -180,7 +180,7 @@ import UIKit
         self.circularLayer.timeOffset = pausedTime
     }
     
-    open func continueCountDown(){
+    open func resumeCountDown(){
         guard self.circularLayer.isAnimating != true else {
             return
         }
@@ -199,13 +199,17 @@ import UIKit
     }
     
     open func remainingTime() -> CGFloat {
-        return CGFloat(self.circularLayer.animationDuration) - CGFloat(self.circularLayer.convertTime(CACurrentMediaTime(), from: nil) - startAnimationConvertTime!)
+        let now = mach_absolute_time()
+        let elapsed = now - mach_start
+        
+        let nanos = elapsed * UInt64(mach_info!.numer) / UInt64(mach_info!.denom)
+        return CGFloat(TimeInterval(nanos) / TimeInterval(NSEC_PER_MSEC))
     }
     
 
     @objc func timerTick() {
-        let end = mach_absolute_time()
-        let elapsed = end - mach_start
+        let now = mach_absolute_time()
+        let elapsed = now - mach_start
         
         let nanos = elapsed * UInt64(mach_info!.numer) / UInt64(mach_info!.denom)
         let t = TimeInterval(nanos) / TimeInterval(NSEC_PER_SEC)
