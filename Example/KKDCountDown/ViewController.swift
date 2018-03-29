@@ -20,11 +20,11 @@ class ViewController: UIViewController {
         
         circularCountDown.circleWidth = 15
         circularCountDown.circleColor = .lightGray
-        circularCountDown.progressColor = .green
-        circularCountDown.textColor = .blue
+        circularCountDown.progressColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1)
+        circularCountDown.textColor = .white
         circularCountDown.textFont = UIFont(name: "Verdana", size: 80)!
         circularCountDown.textWinkingPeriod = 0.2
-        circularCountDown.defaultText = "100"
+        circularCountDown.defaultText = "10"
         
     }
 
@@ -36,6 +36,8 @@ class ViewController: UIViewController {
     @IBAction func onClickedStart(_ sender: Any) {
         circularCountDown.startCountDown(10) {
             let alert = UIAlertController(title: "Time is up", message: "", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+            alert.addAction(cancel)
             self.present(alert, animated: true)
         }
     }

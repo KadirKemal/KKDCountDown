@@ -16,6 +16,7 @@ import UIKit
     private var timer: Timer?
     private var mach_info:mach_timebase_info?
     private var mach_start: UInt64 = 0
+    private var mach_pause: UInt64 = 0
     
     @IBInspectable open var circleWidth: CGFloat = 15 {
         didSet {
@@ -112,9 +113,6 @@ import UIKit
         self.backgroundColor = UIColor.clear
         self.circularLayer.backgroundColor = UIColor.clear.cgColor
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleWillResignActive), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
-//
-        NotificationCenter.default.addObserver(self, selector: #selector(handleDidBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
     }
 
     
@@ -123,13 +121,6 @@ import UIKit
     }
 
     public typealias CountDownCompletion = (() -> Void)
-    
-//    public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-//        if(flag){
-//            self.circularLayer.isAnimating = false
-//            self.completionBlock?()
-//        }
-//    }
     
     open func startCountDown(_ countDownDuration: TimeInterval, completion:  CountDownCompletion? = nil) {
         mach_info = mach_timebase_info()
@@ -156,7 +147,6 @@ import UIKit
         animation.toValue = self.circularLayer.stepCount
         
         animation.duration = countDownDuration
-        //animation.delegate = self
         animation.isRemovedOnCompletion = false
         
         self.circularLayer.add(animation, forKey: nil)
@@ -166,9 +156,11 @@ import UIKit
             return
         }
         
+        self.timer?.invalidate()
+        
         self.circularLayer.isAnimating = false
         self.circularLayer.animated = false
-        self.defaultText = "stop"
+        self.defaultText = ""
         
         self.circularLayer.removeAllAnimations()
         self.completionBlock = nil
@@ -180,6 +172,8 @@ import UIKit
         }
         
         self.circularLayer.isAnimating = false
+        self.timer?.invalidate()
+        mach_pause = mach_absolute_time()
         
         let pausedTime = self.circularLayer.convertTime(CACurrentMediaTime(), from: nil)
         self.circularLayer.speed = 0.0
@@ -191,6 +185,9 @@ import UIKit
             return
         }
         
+        self.mach_start = mach_start + mach_absolute_time() - mach_pause
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(timerTick), userInfo: nil, repeats: true)
+        
         self.circularLayer.isAnimating = true
         
         let pausedTime = self.circularLayer.timeOffset
@@ -198,9 +195,7 @@ import UIKit
         self.circularLayer.timeOffset = 0.0
         
         let timeSincePause = self.circularLayer.convertTime(CACurrentMediaTime(), from: nil) - pausedTime;
-        self.circularLayer.beginTime = timeSincePause;
-        
-        //timeSincePause    Double    9.2564577040002404
+        self.circularLayer.beginTime = self.circularLayer.beginTime + timeSincePause;
     }
     
     open func remainingTime() -> CGFloat {
@@ -221,38 +216,5 @@ import UIKit
             self.circularLayer.isAnimating = false
             self.completionBlock?()
         }
-    }
-    
-    @objc func handleWillResignActive() {
-
-    }
-    
-    @objc func handleDidBecomeActive() {
-        if(self.circularLayer.animationKeys()?.count == 0){
-            print("count var")
-        }
-        
-        if(self.circularLayer.isAnimating){
-            print("is animating")
-        }
-    }
-    
-    
-    
-    func timeBlockWithMach() -> TimeInterval {
-        var info = mach_timebase_info()
-        guard mach_timebase_info(&info) == KERN_SUCCESS else { return -1 }
-        
-        let start = mach_absolute_time()
-        
-        sleep(3)
-        
-        let end = mach_absolute_time()
-        
-        let elapsed = end - start
-        
-        let nanos = elapsed * UInt64(info.numer) / UInt64(info.denom)
-        let t = TimeInterval(nanos) / TimeInterval(NSEC_PER_MSEC)
-        return t
     }
 }
